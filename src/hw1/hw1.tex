@@ -1,0 +1,184 @@
+\lhead{\textbf{Basic Algorithms, Fall 2025 \\ CSCI-UA.0310-005/6}}
+\chead{\Large{\textbf{Homework 1}}}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% ENTER NAME BELOW!
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\rhead{\textbf{Professor Rachit Garg}\\\textbf{Name:} ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~}
+%REPLACE THE TILDES WITH YOUR NAME
+\runningheadrule
+\firstpageheadrule
+\cfoot{}
+
+\section*{Due September 15 (11:59 p.m.)}
+\intro
+
+\subsection*{1-0 List all your collaborators and sources: (\texorpdfstring{$-\infty$}{-∞} points if left blank)}
+\vspace{0.75cm}
+
+\section*{Problem 1-1 -- Big-O (30 points)}
+
+Recall that $f=O(g)$ is defined for functions $f$ and $g$ (both from $\mathbb{N}$ to $\mathbb{R}^+$) to mean that there exist positive constants $n_0$ and $C$ such that:
+$$f(n)\leq C\cdot g(n) \ \text{ for all } n\geq n_0.$$
+
+We also define  $f=\Omega (g)$ if there exist positive constants $n_0$ and $C$ such that:
+$$f(n)\geq C\cdot g(n) \ \text{ for all } n\geq n_0.$$
+
+And $f=\Theta(g)$ if there exist positive constants $C_1, C_2$ and an  $n_0$ such that $$C_1 \cdot g(n) \leq f(n) \leq C_2 \cdot g(n) \ \text{ for all } n \geq n_0$$
+
+(3 points each) For each of the following functions $f, g$, state whether $f(n) = O(g(n)), f(n) = \Omega(g(n)),$ or $f(n) = \Theta(g(n))$. It is possible that multiple options might be true. 
+
+Justify your answers in 1-2 sentences (i.e., by using one of the methods for proving asymptotics, the definitions or the limit definitions). 
+
+\begin{enumerate}
+    \item $f(n) = 2n^2 \quad g(n) = n^{3/2}(\log n)^3$
+    \begin{solution}
+        \vspace{3cm}
+    \end{solution}
+
+    \item $f(n) = 25\cdot3^n \quad g(n) = n\cdot4^{n/2}$
+    \begin{solution}
+        \vspace{3cm}
+    \end{solution}
+
+    \item $f(n) = \log n \log\log n \quad g(n) = n(\log \log n)^3$
+    \begin{solution}
+        \vspace{3cm}
+    \end{solution}
+
+    \item $f(n) = 2n^2 \quad g(n) = n!$ \quad (Recall $n!=1\cdot2\cdot3\ldots(n-1)\cdot n$)
+    \begin{solution}
+        \vspace{3cm}
+    \end{solution}
+
+    \item $f(n) = 4^{\log n} \quad g(n) = (\log n)^4$
+    \begin{solution}
+        \vspace{3cm}
+    \end{solution}
+\end{enumerate}
+
+\section*{Problem 1-2 -- Sum Inductions (15 points)}
+\begin{enumerate}
+    \item Our goal is to show the following fact:
+    \begin{align*}
+        \forall n \in \mathbb{N} \quad 1+2+3+\ldots + n =\frac{n(n+1)}{2}
+    \end{align*}
+    \begin{enumerate}
+        \item (1 point) Show the base case.
+        \begin{solution}
+            \vspace{2cm}
+        \end{solution}
+        \item (4 points) Show the inductive step.
+        \begin{solution}
+            \vspace{6cm}
+        \end{solution}
+    \end{enumerate}
+
+    \item Now, what if we sum the first $n$ odd numbers? We will show:
+    \begin{align*}
+        \forall n \in \mathbb{N} \quad 1 + 3 + 5 + (2n-1) = n^2
+    \end{align*}
+
+    \begin{enumerate}
+        \item (1 point) Show the base case.
+        \begin{solution}
+            \vspace{3cm}
+        \end{solution}
+        \newpage
+        \item (9 points) Show the inductive step.
+        \begin{solution}
+            \vspace{8cm}
+        \end{solution}
+    \end{enumerate}
+\end{enumerate}
+
+\section*{Problem 1-3 -- Ordering Big-O (10 Points)}
+Rank the following functions by order of growth (You need not prove the correctness of your ranking). That is, find an order $f_a$, $f_b$, $f_c\hdots f_e$ so that $f_a = \mathcal{O}(f_b)$,
+$f_b = \mathcal{O}(f_c)$, and so on:
+\begin{enumerate}
+    \item $\sqrt{n}$
+    \item $n^{\frac1n}$
+    \item $n^n$
+    \item $2^{\log_{10}(n)}$
+    \item $n$
+\end{enumerate}
+\begin{solution}
+    \vspace{4cm}
+\end{solution}
+
+\newpage
+
+\section*{Problem 1-4 -- Asymptotics in the Wild (5 Points)}
+\begin{enumerate}
+    \item (1 point each) For each of the following scenarios, determine the Big-O complexity. (There is one each of $O(1)$, $O(n)$, $O(n^2)$, and $O(2^n)$).
+        \begin{enumerate}
+            \item Washing $n$ dishes by hand.
+            \item Introducing $n$ friends to one another at a party.
+            \item Eating a single chip out of a bag of $n$ chips (you can pick any one).
+            \item Trying every possible combination of $n$ potential ice cream toppings.
+        \end{enumerate}
+        \begin{solution}
+            \vspace{4cm}
+        \end{solution}
+    \item (1 point) What is another real world example of an $O(n)$ activity?
+    \begin{solution}
+        \vspace{2cm}
+    \end{solution}
+\end{enumerate}
+
+
+\section*{Problem 1-5 -- Find the Bug (10 Points)}
+Find the bug in the following proof and explain the error in 1-2 sentences. Define a recurrence. $$T(n)=2T(n/2)+n, \qquad T(1)=2$$
+"Claim": $T(n)=O(n)$ \newline
+"Proof": By induction on $n$. Assume the claim holds for
+$1,2,\ldots,n-1$. Let us prove it for $n$:
+\begin{align*}
+    T(n) &= 2  \cdot T(n/2)+n  \\
+         &= 2 \cdot O(n/2) + n  \\
+         &= O(n) \; .
+\end{align*}
+
+\begin{solution}
+    \vspace{4cm}
+\end{solution}
+
+\section*{Problem 1-6 -- Multiplications (10 Points)}
+Describe a procedure that, given four integers $a$, $b$, $c$, $d$, outputs the three numbers $ab$, $cd$ and $ad + bc$ and uses only three multiplications (four would be obvious). You are free to use as many additions and subtractions as you wish.
+(Hint: Consider the product $(a + c)(b + d)$.)
+
+\begin{solution}
+    \vspace{4cm}
+\end{solution}
+
+
+\section*{Problem 1-7 -- Counting Inversions (20 points)}
+
+Let $A = A[1, \ldots, n]$ to be an array of $n$ distinct integers. We call a pair $(i, j)$ an \emph{inversion} of $A$ if $i<j$ but $A[i]>A[j]$. In this problem, we will work up how to count the number of inversions of an array.
+
+\begin{enumerate}
+    \item (2 points) List all inversions of the array $A = \langle9,2,5,7,1, 10\rangle$.
+
+    \begin{solution}
+        \vspace{2cm}
+    \end{solution}
+
+    \newpage 
+    
+    \item (6 points) Assume $A$ is some permutation of the set $[n] = \{1,\ldots, n\}$. Which array(s) maximize the number of inversions? State the number of inversions as a function of $n$.
+
+    \begin{solution}
+        \vspace{5cm}
+    \end{solution}
+
+    \item  (2 points) If an array $A$ has $k$ inversions, what will the running time of Insertion Sort on $A$ be in terms of $n$ and $k$? Explain why.
+
+    \begin{solution}
+        \vspace{2cm}
+    \end{solution}
+
+    \item (10 points) Give an algorithm that determines the number of transpositions in an array consisting of $n$ numbers in $\Theta(n \log n)$ worst-case time. Also prove the correctness and run time bounds for your algorithm. (Hint: Modify merge sort.)
+
+    \begin{solution}
+        \vspace{8cm}
+    \end{solution}
+\end{enumerate}
+

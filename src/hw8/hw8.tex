@@ -1,0 +1,125 @@
+\lhead{\textbf{Basic Algorithms, Fall 2025 \\ CSCI-UA.0310-005/6}}
+\chead{\Large{\textbf{Homework 8}}}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% ENTER NAME BELOW!
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\rhead{\textbf{Professor Rachit Garg}\\\textbf{Name:} ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~}
+%REPLACE THE TILDES WITH YOUR NAME
+\runningheadrule
+\firstpageheadrule
+\cfoot{}
+
+\section*{Due November 10 (11:59 p.m.)}
+\intro
+
+\subsection*{1-0 List all your collaborators and sources: (\texorpdfstring{$-\infty$}{-∞} points if left blank)}
+\vspace{0.75cm}
+
+\section*{Problem 8-1 -- Breadth-First Traversal (20 Points)}
+
+
+
+Consider the undirected graph shown in Figure~\ref{fig:box}.
+If we begin a BFS traversal starting at node $A$, in what order are the nodes visited? Write the order and draw the resultant BFS traversal tree (i.e., the subtree of the graph that consists of the edges traversed in the running of BFS). 
+
+Assume we visit the earlier letter alphabetically first, so from $A$ we will visit $B$ before $C$, and so on.
+
+\begin{solution}
+    \vspace{7cm}
+\end{solution}
+
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=\textwidth]{Images/BFS+DFS.png}
+    \caption{Graph to traverse}
+    \label{fig:box}
+\end{figure}
+
+\section*{Problem 8-2 -- Depth-First Traversal (20 Points)}
+
+Consider the same graph from Problem 8-1, in Figure~\ref{fig:box}. Now, we want to do depth-first traversal of the graph. List the discovery (i.e., when we mark a node ``gray'') and finishing times (i.e., when we mark a node ``black'') of all the vertices (you may assume each successive step in the traversal takes time 1). 
+
+Assume we visit the earlier letter alphabetically first, so from $A$ we will visit $B$ before $C$, and so on.
+
+\begin{solution}
+    \vspace{6cm}
+\end{solution}
+
+\section*{Problem 8-3 -- Induction for BFS (15 Points)}
+
+Prove by induction on $k$ the following statement: 
+
+\begin{theorem}
+    Let $G=(V, E)$ be an undirected graph. In a breadth-first traversal of $G$ from some source node, if the distance of vertex $u$ from the source is $k$, then $u$ is in the $k$-th frontier. 
+\end{theorem}
+
+\noindent(\emph{Note:} This is sufficient to prove one direction of the correctness of BFS!)
+
+\begin{solution}
+    \vspace{5cm}
+\end{solution}
+
+\section*{Problem 8-4 -- DFS True/False (20 Points)}
+
+ In this problem we will consider DFS over directed graphs. Recall the definitions adopted in lecture:
+
+\begin{itemize}
+    \item All vertices of the graph are initially colored white.
+    \item We color a vertex $v$ gray when it is visited (but not all outgoing edges from $v$ have been explored).
+    \item We color a vertex $v$ black when all outgoing edges from $v$ have been explored.
+    \item $d[u]$ and $f[u]$ are the discovery and finish times for vertex $u$, respectively.
+\end{itemize}
+
+\noindent (5 points each) Answer True or False for the following questions. If True, provide a short (one or two sentences) justification. If False, provide a counter-example or a short justification as appropriate.
+(Remember that ``True'' means ``always true'', and ``False'' means ``not always true'', i.e., there is at least one counter-example. )
+
+\begin{enumerate}
+\item If $v$ turns gray when $u$ is gray then $v$ is a descendant of $u$.
+
+\begin{solution} TRUE~~/~~FALSE
+    \vspace{3cm}
+\end{solution}
+
+\item If $v$ turns black when $u$ is gray, then $v$ is a descendant of $u$.
+
+\begin{solution} TRUE~~/~~FALSE
+    \vspace{3cm}
+\end{solution}
+
+\item If $v$ turns black when $u$ is black, then $u$ was already black before $v$ turned gray.
+
+\begin{solution} TRUE~~/~~FALSE
+    \vspace{3cm}
+\end{solution}
+
+\item If at time $f[u]$, there exists in the graph a path from $u$ to $v$ made of black vertices, then $v$ is a descendant of $u$.
+
+\begin{solution} TRUE~~/~~FALSE
+    \vspace{3cm}
+\end{solution}
+\end{enumerate}
+
+\section*{Problem 8-5 -- Separable Paths (25 Points)}
+
+Let $P$ be a program which, given as input a directed graph $G=(V,E)$ as well as two vertices $s,t \in V$, outputs the shortest path between them. Let $T(P)$ be the run-time of this program. Imagine that $P$ is already highly optimized (say for running on a GPU) such that $T(P)$ runs significantly faster than your own shortest path algorithm (for simplicity, we will assume $P$ runs in the same amount of time regardless of the size of its input). As such, we will use $P$ to solve the following problem.
+
+We are given a directed graph $G$ where each of its edges is colored either red or blue. We want to find the shortest path from some vertex $s$ to some other vertex $t$, with the stipulation that our path must be \emph{separable}. We define a path to be separable if it consists of some number (possibly 0) of red edges followed by some number (possibly 0) if blue edges. In other words, once you use a blue edge, all following edges must be blue. 
+\begin{enumerate}
+    \item (10 points) Design an algorithm to find the shortest separable path from $s$ to $t$.
+    Your algorithm should invoke $P$ \emph{once} on a carefully constructed graph, and should run in time $O(|V|+|E|) + T(P)$.
+    You should \emph{not} explore the graph yourself (i.e., do not implement BFS); use the optimized program $P$.
+    
+    (Hint: Consider the subgraph formed by restricting the edges to only the red ones. Then, consider the same process with the blue edges. Notice that you are to spend some number of steps in the first part and then move to the second part and stay there. Can you combine the two graphs somehow?)
+    \begin{solution}
+        \vspace{6cm}
+    \end{solution}
+    \item (8 points) Justify the correctness of your algorithm.
+    \begin{solution}
+        \vspace{8cm}
+    \end{solution}
+    \newpage
+    \item (7 points) Show that it runs in time $O(|V|+|E|) + T(P)$.
+    \begin{solution}
+        \vspace{7cm}
+    \end{solution}
+\end{enumerate}

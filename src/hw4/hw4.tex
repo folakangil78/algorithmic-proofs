@@ -1,0 +1,154 @@
+\lhead{\textbf{Basic Algorithms, Fall 2025 \\ CSCI-UA.0310-005/6}}
+\chead{\Large{\textbf{Homework 4}}}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% ENTER NAME BELOW!
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\rhead{\textbf{Professor Rachit Garg}\\\textbf{Name:} ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~}
+%REPLACE THE TILDES WITH YOUR NAME
+\runningheadrule
+\firstpageheadrule
+\cfoot{}
+
+\section*{Due October 6 (11:59 p.m.)}
+\intro
+
+\subsection*{1-0 List all your collaborators and sources: (\texorpdfstring{$-\infty$}{-∞} points if left blank)}
+\vspace{0.75cm}
+
+
+
+\section*{Problem 4-1 -- Permutations (40 Points)}
+
+Let $[n] := \{1, 2, \ldots, n\}$, and let $S_n$ be the set of all permutations of $[n]$. For example, for $n=3$, we have $|S_3|=6$ with:
+$$S_3 = \{(1,2,3), (1,3,2), (2, 1,3), (2, 3, 1), (3, 1, 2), (3, 2, 1)\}$$
+%Recall that $|S_n|=n!=n\cdot (n-1) \cdots 1$. %Recall that $n!=O(n^n)$ and $2^n=O(n!)$. 
+Note that each permutation in $S_n$ can be seen as an input for a sorting algorithm (where the elements of $[n]$ are reordered according to the permutation). In this question, we will consider sorting algorithms that for some inputs err and do not return the correct answer. We say that a sorting algorithm is $\eps$-correct if the algorithm produces the correct result (i.e., produces a sorted array as output) on at least $\eps\cdot |S_n|$ inputs in the set $S_n$. 
+
+\begin{enumerate}
+    \item (25 points) Argue that for any $0 \leq \epsilon \leq 1$, the decision tree of an $\epsilon$-correct comparison-based sorting algorithm must have at least $\epsilon \cdot |S_n|$ leaves. \hint{Recall that the output of a comparison-based sorting algorithm is a permutation that prescribes how the input array has to be ordered to obtain the sorted output.}
+    \begin{solution}
+        \vspace{\stretch{1}}
+        \vspace{3 cm}
+    \end{solution}
+\end{enumerate}
+
+\noindent
+In the following, we investigate whether allowing for more errors can save on the required number of comparisons.   
+For example, at the extreme case that $\varepsilon =0$, no comparison has to be made (the algorithm is allowed to always err).
+In what follows, for each given value of $\varepsilon$, decide whether there exists a comparison-based sorting algorithm that is $\varepsilon$-correct and runs in time $O(n)$.  Justify your answers. (Recall that $|S_n| = n! = n(n-1)\cdots2\cdot 1$.)
+\begin{enumerate}[resume]
+    \item (5 points) $\eps=1/2$. 
+    
+    \begin{solution}
+        \vspace{\stretch{1}}
+        \vspace{4 cm}
+    \end{solution}
+
+    \item (5 points) $\eps=1/n$. 
+    \begin{solution}
+        \vspace{\stretch{1}}
+        \vspace{4 cm}
+    \end{solution}
+    
+    \item (5 points) $\eps=\frac{1}{2^n}$. 
+    \begin{solution}
+        \vspace{\stretch{1}}
+        \vspace{4 cm}
+    \end{solution}
+
+    \newpage 
+    
+    \item (\textbf{Honors Problem}, **, 0 points)  $ \eps=\frac{2^{\left\lfloor \frac{n}{2}\right\rfloor }}{n!}$.
+    \begin{solution}
+        \vspace{\stretch{1}}
+        \vspace{3 cm}
+    \end{solution}
+    
+\end{enumerate}
+
+\section*{Problem 4-2 -- Sorting Bounds (20 points)}
+
+\begin{enumerate}
+    \item (5 points) Assume you are given an array of $n$ integers in the range
+    $\{1,\ldots, (\log n)^{\log n}\}$. Show how to sort this array in time
+    $O(n \log\!\log n)$.
+
+    \begin{solution}
+        \vspace{\stretch{1}}
+        \vspace{3 cm}
+    \end{solution}
+
+
+    \item (15 points) Assume you are given an array of $n$ integers with many
+    duplicates, so that you know that there are at most $\frac{n}{\log n}$
+    distinct elements in the array. Show how to sort this array in time
+    $O(n)$. You may assume access to an empty array of size $B$ where $B$ is an upper bound on the integers in your input as well as any additional memory you may require.
+    
+    \noindent(\textbf{Hint:} Adapt counting (small-key) sort by keeping track of which elements exist in the array and how many from each one.)
+
+    \begin{solution}
+        \vspace{\stretch{1}}
+        \vspace{6 cm}
+    \end{solution}
+
+\end{enumerate}
+\section*{Problem 4-3 -- Unstable Radix Sort (10 points)}
+    You are given the array $A = (127,\;736,\;989,\;126)$. We will run radix sort (base 10) for three passes (ones $\to$ tens $\to$ hundreds),  but suppose we run an \textbf{unstable} sorting algorithm in each pass instead of counting sort.
+
+    \begin{enumerate}
+    \item (5 points) Fill in the array after each pass:
+
+    \begin{align*}
+        \text{After ones-digit pass:} & \quad  \underline{  
+        %Insert numbers here, $(100,101,102,103)$
+        \hspace{3cm}} \\
+        \text{After tens-digit pass:} & \quad \underline{
+        % here
+        \hspace{3cm}} \\
+        \text{After hundreds-digit pass:} & \quad \underline{
+        % here
+        \hspace{3cm}}
+    \end{align*}
+
+    \item (5 points) Briefly explain what went wrong and why instability can (potentially) make the final output incorrect.
+    \begin{solution} 
+        \vspace{\stretch{1}}
+        \vspace{6 cm}
+    \end{solution} 
+    \end{enumerate}
+
+
+% \newpage
+
+\section*{Problem 4-4 -- 3-Way Karatsuba (30 Points)}
+
+In this question, we will consider the problem of making 3-way Karatsuba multiplication. In essence, we will divide our numbers $X$ and $Y$ into three parts rather than 2, as so:
+
+$$X = A\cdot10^{2n/3}+B\cdot10^{n/3}+C$$
+
+$$Y=D\cdot 10^{2n/3}+E\cdot 10^{n/3}+F.$$
+\begin{enumerate}
+    \item (10 points) Describe the naive approach using 9 small-part multiplications to find the product $X\cdot Y$ using the split as above. 
+
+    \begin{solution}
+        \vspace{4cm}
+    \end{solution}
+
+    \item (10 points) Show how to reduce this number to 6 multiplications using an approach similar to Karatsuba. 
+
+    \begin{solution}
+        \vspace{5cm}
+    \end{solution}
+% \newpage
+    \item (10 points) Describe the recurrence relation to find the time complexity of the three-way Karatsuba, and give its asymptotic complexity.
+
+    \begin{solution}
+        \vspace{5cm}
+    \end{solution}
+
+    \item (Honors Problem, *, 0 points)) Compare the time complexity derived above to if you were to use 2-way Karatsuba to find the product. Which version is faster?
+
+    \begin{solution}
+        \vspace{4cm}
+    \end{solution}
+\end{enumerate}

@@ -1,0 +1,205 @@
+\lhead{\textbf{Basic Algorithms, Fall 2025 \\ CSCI-UA.0310-005/6}}
+\chead{\Large{\textbf{Homework 9}}}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% ENTER NAME BELOW!
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\rhead{\textbf{Professor Rachit Garg}\\\textbf{Name:} ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~}
+%REPLACE THE TILDES WITH YOUR NAME
+\runningheadrule
+\firstpageheadrule
+\cfoot{}
+
+\section*{Due November 17 (11:59 p.m.)}
+\intro
+
+\subsection*{0 List all your collaborators and sources: (\texorpdfstring{$-\infty$}{-∞} points if left blank)}
+\vspace{0.75cm}
+
+\section*{Problem 9-1 — DAG Example (20 Points)}
+
+
+\begin{center}
+    \includegraphics[scale=0.30]{Images/DFStoDAG.png}
+\end{center}
+
+\begin{enumerate}
+\item (10 points) Run DFS on the graph above, and remove all back edges. \textbf{This time, assume that the DFS explores neighbors in REVERSE alphabetical order (i.e., Node L will be discovered first!)}. The resultant graph should be a DAG. Draw the DAG and list all the back edges, alongside which cycles they were a part of in the original graph.
+
+\begin{solution}
+    \vspace{6cm}
+\end{solution} 
+
+    \item (10 points) Run topological sort on the DAG found above and write the resulting ordering. 
+    \begin{solution}
+    \vspace{5cm}
+\end{solution}
+\end{enumerate}
+
+\section*{Problem 9-2 -- Graph Property (30 Points)}
+
+In this question you will develop an algorithm for checking whether a \emph{directed} graph $G = (V,E)$ is \emph{semi-connected}, defined as obeying the following property:
+
+\paragraph{Property.} For all pairs of vertices $u, v\in V$, there is a path from $u$ to $v$ or a path from $v$ to $u$ (or both). 
+
+
+\begin{enumerate}
+\item (5 points) Suppose first that $G = (V, E)$ is a acyclic (i.e., it is a DAG). 
+Design a simple $O(|V|+|E|)$ time algorithm to determine whether or not the given graph $G$ satisfies the desired property. \iffalse For example, in Figure~\ref{fig:q1-1}, the first example satisfies the property while the second does not (as there is no path from $A$ to $C$ nor from $C$ to $A$). \fi
+Argue the correctness of your algorithm.
+
+\begin{solution}
+    \vspace{6cm}
+\end{solution}
+
+\item (5 points) Suppose now that $G = (V, E)$ is an arbitrary directed graph. Design a $O(|V|+|E|)$ time algorithm to determine whether or not the given graph $G$ satisfies the desired property. 
+
+(\textbf{Hint:} Recall that any directed graph $G$ can be decomposed into a DAG of strongly connected components (SCCs). Can you reuse some ideas of your prior approach?)
+\begin{solution}
+    \vspace{4cm}
+\end{solution}
+
+
+\item (10 points) Prove that your algorithm from part $(2)$ is correct.
+\begin{solution}
+    \vspace{6cm}
+\end{solution}
+
+\item (10 points) Now, prove the reverse/``iff'' direction. That is, the proof of correctness of your algorithm shows that if some condition is met (which your algorithm is designed to spot), then the graph is semi-connected. Here, you should prove that is a given directed graph $G$ is semi-connected, then this condition is necessarily met!
+
+\begin{solution}
+    \vspace{8cm}
+\end{solution}
+\end{enumerate}
+
+\section*{Problem 9-3 -- Augmented DFS (25 Points)}
+
+Typically, DFS only directly finds a DFS traversal tree. Augment DFS so that it also outputs all edges of $G$ and their labels (i.e., tree, backward, forward, or cross edges). It suffices to give a detailed description or the pseudocode of the augmented program. We give (one potential) pseudocode for DFS below. 
+
+% \begin{algorithm}
+% \caption{Depth-First Search (DFS)}
+% \begin{tabbing}
+% \hspace{2em}\=\hspace{4em}\=\kill
+% \textbf{Input:} Graph $G=(V,E)$, start vertex $s$.\\
+% \textbf{Output:} DFS tree $T=(V_T,E_T)$.\\[0.5em]
+
+% $V_T \leftarrow \varnothing$; \quad $E_T \leftarrow \varnothing$\\
+% \textbf{for} each $v \in V$ \textbf{do}\\
+% \> visited[$v$] $\leftarrow$ false\\
+% \> finished[$v$] $\leftarrow$ false\\[0.5em]
+
+% \textbf{procedure} DFS($u$):\\
+% \> visited[$u$] $\leftarrow$ true\\
+% \> $V_T \leftarrow V_T \cup \{u\}$\\
+% \> \textbf{for} each vertex $v$ such that $(u,v)\in E$ \textbf{do}\\
+% \>\qquad \textbf{if} visited[$v$] = false \textbf{then}\\
+% \>\> $E_T \leftarrow E_T \cup \{(u,v)\}$\\
+% \>\> DFS($v$)\\
+% \>\> finished[$v$] $\leftarrow$ true\\
+% \textbf{end procedure}\\[0.5em]
+
+% DFS($s$)\\
+% \textbf{return} $T=(V_T,E_T)$
+% \end{tabbing}
+% \end{algorithm}
+
+% \begin{verbatim}
+% DFS(G):
+%     for each vertex v in V:
+%         color[v] = WHITE
+%         parent[v] = NIL
+%     time = 0
+%     for each vertex v in V:
+%         if color[v] == WHITE:
+%             DFS-Visit(v)
+
+% DFS-Visit(u):
+%     color[u] = GRAY
+%     time = time + 1
+%     d[u] = time
+%     for each v in Adj[u]:
+%         if color[v] == WHITE:
+%             parent[v] = u
+%             DFS-Visit(v)
+%     color[u] = BLACK
+%     time = time + 1
+%     f[u] = time
+% \end{verbatim}
+
+\begin{algorithm}
+\caption{Depth-First Search (DFS)}
+\begin{tabbing}
+\hspace{2em}\=\hspace{4em}\=\hspace{4em}\=\kill
+\textbf{Input:} Graph $G=(V,E)$.\\
+\textbf{Output:} DFS tree $T=(V_T,E_T)$, discovery and finish times $d[u], f[u]$.\\[0.5em]
+
+$V_T \leftarrow \varnothing$; \quad $E_T \leftarrow \varnothing$\\
+\textbf{for} each vertex $v \in V$ \textbf{do}\\
+\> color[$v$] $\leftarrow$ WHITE\\
+\> parent[$v$] $\leftarrow$ NIL\\
+time $\leftarrow 0$\\[0.5em]
+
+\textbf{for} each vertex $v \in V$ \textbf{do}\\
+\> \textbf{if} color[$v$] = WHITE \textbf{then}\\
+\>\> DFS-Visit($v$)\\[0.5em]
+
+\textbf{procedure} DFS-Visit($u$):\\
+\> color[$u$] $\leftarrow$ GRAY\\
+\> time $\leftarrow$ time + 1\\
+\> $d[u] \leftarrow$ time\\
+\> $V_T \leftarrow V_T \cup \{u\}$\\
+\> \textbf{for} each $v \in \text{Adj}[u]$ \textbf{do}\\
+\>\> \textbf{if} color[$v$] = WHITE \textbf{then} \hfill \textit{// $(u,v)$ is a tree edge}\\
+\>\>\> parent[$v$] $\leftarrow u$\\
+\>\>\> $E_T \leftarrow E_T \cup \{(u,v)\}$\\
+\>\>\> DFS-Visit($v$)\\
+\> color[$u$] $\leftarrow$ BLACK\\
+\> time $\leftarrow$ time + 1\\
+\> $f[u] \leftarrow$ time\\
+\textbf{end procedure}\\[0.5em]
+
+\textbf{return} $T=(V_T,E_T)$
+\end{tabbing}
+\end{algorithm}
+
+\begin{solution}
+    \vspace{6cm}
+\end{solution}
+
+
+\section*{Problem 9-4 — DFS and BFS Make a Tree (25 Points)}
+
+Let $G=(V, E)$ be an undirected, connected graph, and let $u \in V$ be a vertex. Suppose
+we compute a depth-first search tree rooted at $u$, and obtain a tree $T$ that
+includes all nodes of $G$. Suppose we then compute a breadth-first search
+tree rooted at $u$ and obtain the same tree $T$. In this question, we will prove that $G=T$. (In other
+words, if $T$ is both a depth-first search tree and a breadth-first search
+tree rooted at $u$, then $G$ cannot contain any edges that do not belong to
+$T$.)  
+\begin{enumerate}
+    \item (10 points) Show that if $G$ contains edges that are not in the tree $T$, then they must necessarily be backwards edges. 
+
+    \begin{solution}
+        \vspace{5cm}
+    \end{solution}
+    \item (10 points) Recall from the BFS run that the $\mathsf{layer}$ of a vertex $v$, denoted $\mathsf{layer}[v]$, is the minimum distance of vertex from the root $u$.  
+    
+Suppose that during a DFS run, we encounter a back edge, i.e. $v_1, v_2, \ldots, v_k$ is a DFS tree path in $G$, where $v_k \to v_1$ is a back edge and $k \ge 3$.  
+Assuming the BFS tree and DFS tree are identical, show that:
+\begin{enumerate}
+    \item The closest vertex to $u$ amongst $v_1,\ldots,v_k$ is $v_1$, i.e. $v_1$ has the least layer value amongst $v_1,\ldots,v_k$.
+    \item $\mathsf{layer}[v_i] = \mathsf{layer}[v_{i-1}] + 1$ for $i=2,\dots,k$.  
+    \item Since the graph is undirected, show that $\mathsf{layer}[v_k] \le \mathsf{layer}[v_1] + 1$.
+\end{enumerate}
+
+\begin{solution}
+    \vspace{5cm}
+\end{solution}
+\item (5 points) Use contradiction to complete the proof. Suppose DFS and BFS produce the same tree $T$, but $G \neq T$.  
+Use the inequalities above to argue that a back edge cannot exist, showing that this leads to a contradiction.
+
+\begin{solution}
+    \vspace{5cm}
+\end{solution}
+    
+\end{enumerate}
+

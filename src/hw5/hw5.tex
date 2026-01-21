@@ -1,0 +1,145 @@
+\lhead{\textbf{Basic Algorithms, Fall 2025 \\ CSCI-UA.0310-005/6}}
+\chead{\Large{\textbf{Homework 5}}}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% ENTER NAME BELOW!
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\rhead{\textbf{Professor Rachit Garg}\\\textbf{Name:} ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~}
+%REPLACE THE TILDES WITH YOUR NAME
+\runningheadrule
+\firstpageheadrule
+\cfoot{}
+
+\section*{Due October 13 (11:59 p.m.)}
+\intro
+
+\subsection*{1-0 List all your collaborators and sources: (\texorpdfstring{$-\infty$}{-∞} points if left blank)}
+\vspace{0.75cm}
+
+\section*{Problem 5-1 -- Counting Sort (20 points)}
+
+Recall that in Counting (or Small-Key Sort) sort, we append the current element $A[i]$ to the end of the list $L_{k_i}$ where $k_i \in \{1,\dots,k\}$ is the key associated with $A[i]$. Consider instead adding $A[i]$ to the beginning of the list (the rest of the algorithm is unchanged and outputs the concatenated final lists $L_1,\dots,L_k$). What property of Counting sort is broken? 
+
+\begin{solution} 
+        \vspace{\stretch{1}}
+        \vspace{7 cm}
+\end{solution} 
+\newpage
+\section*{Problem 5-2 -- Sorting Efficiently (30 Points)}
+
+\begin{enumerate}
+    \item (15 points)
+    Suppose you have an array $A$ of length $2^{16}$, where each entry is a 128-bit integer. For each of \emph{Radix Sort}, \emph{Counting Sort}, \emph{Merge Sort}, state the optimal runtime for each algorithm running on $A$ (Note that for radix sort, this means choosing the optimal base -- please state this concretely.) Write the runtimes as an approximate number of steps — you may assume Merge Sort runs in time $n\log n$ (i.e., no constants), and Counting Sort runs in $2n+2k$ steps. Finally, state which of these algorithms is most efficient for sorting $A$.
+    
+    \begin{solution}
+        \vspace{7cm}
+    \end{solution}
+    
+    \item (15 points)
+    Assume you are given an array of $n$ integers with many
+    duplications, so that you know that there are at most $\log n$
+    distinct elements in the array. Show how to sort this array in time
+    $O(n \log\!\log n)$.
+    
+    \begin{solution}
+        \vspace{7cm}
+    \end{solution}
+\end{enumerate}
+
+\newpage
+
+\section*{Problem 5-3 -- Pumpkin Pickin' (50 points)}
+
+% Consider a neighborhood of $n$ houses in a line, represented by an array $A$,
+% where $A[i]$ is the value of the items that can be stolen from the $i^{\text{th}}$ house.
+% A dastardly robber would like to steal as much as possible from this neighborhood; however, if they attempt to rob two \emph{adjacent} houses, this will trigger the neighborhood's collective alarm system and call the police. In this problem, you will use dynamic programming to give an efficient algorithm
+% determining the maximum total value of items the robber can steal without triggering the alarm.
+
+You work at a pumpkin patch and you are tasked with harvesting the most pounds of pumpkin without ruining the aesthetic of the pumpkin vine.  In particular, you are not to harvest two \emph{adjacent} pumpkins.  The vine of $n$ pumpkins is represented by an array $A$ where $A[i]$ is the weight of pumpkin $i$ (in pounds). Use dynamic programming to give an efficient algorithm determining the maximum total weight of pumpkin you can harvest while adhering to the rule of not harvesting two in a row. 
+
+\begin{enumerate}
+    \item (8 points)
+    Define the subproblems
+    for the dynamic programming algorithm.
+    How many subproblems are there?
+    \begin{solution}
+         
+        \vspace{4cm}
+    \end{solution}
+    \item (8 points) Write out the base cases (there should be two of them!).
+    \begin{solution}
+        \vspace{2cm}
+    \end{solution}
+    \item (10 points) Give and justify the recurrence your subproblems should satisfy. 
+    \begin{solution}
+        \vspace{5cm}
+    \end{solution}
+    \item (10 points) Using this recurrence, give your algorithm in pseudocode.
+    The return value of the algorithm should be the maximum pounds of pumpkin.
+    %State and justify the runtime of your algorithm. 
+    \begin{solution}
+        \vspace{8cm}
+    \end{solution}
+    \item (8 points) State and justify the runtime of your algorithm.
+    \begin{solution}
+        \vspace{4cm}
+    \end{solution}
+    
+    \newpage
+    
+    \item (6 points) 
+    So far, the algorithm that you developed only computes the \emph{pounds} of the pumpkin that can be harvested, but it does not tell you \emph{which pumpkins} to pick.
+
+    Explain how to modify the algorithm so that at the end, we can also produce the list of pumpkins to harvest.
+    You may want to store additional information in the DP table as it is filled out.
+    
+    (\textbf{Hint:} think about what we did in the LCS problem to extract the string after filling out the table.)
+      \begin{solution}
+        \vspace{9cm}
+    \end{solution}
+\end{enumerate}
+
+\section*{Honors Problem -- Optimal Substructure for Rod Cutting (0 Points, *)}
+
+Suppose a profit-maximizing way to cut a rod of length $n$ is given by a sequence of piece lengths
+\[
+x_1, x_2, \dots, x_k,
+\]
+where each $x_i$ is a positive integer and $x_1 + x_2 + \cdots + x_k = n$.
+
+\begin{enumerate}
+    \item (5 points) Fill in the blank: Then $x_2, \dots, x_k$ is \underline{\hspace{5cm}}.  
+    \newline (\textbf{Hint:} Think about the remaining rod of length $n - x_1$.)
+    \begin{solution}
+        \vspace{1cm}
+    \end{solution}
+   
+\newpage
+    \item (20 points) Prove your claim from part (1). (\textbf{Hint:} Try proof by contradiction.)
+
+    \begin{solution}
+        \vspace{3cm}
+    \end{solution}
+   
+\end{enumerate}
+
+\section*{Honors Problem -- little-$o$ (0 Points, *)}
+We present another asymptotic notation that is used in the analysis of algorithms: For functions $f, g$, we say $f = o(g)$ (``$f$ is little-$o$ of $g$'') if and only if the ratio $\frac{f(n)}{g(n)}$ goes to zero as $n$ tends to infinity. For example, $\log n = o(n)$ but $n\neq o(n)$. 
+\begin{enumerate}
+    \item Is $\sqrt{n}=o(n)$? Prove that it is or not.
+    \begin{solution}
+        \vspace{3cm}
+    \end{solution}
+
+\newpage
+    
+    \item Is it possible that $f=o(g)$ and $g=O(f)$? If yes, give an example. Otherwise prove that it is not possible.
+    \begin{solution}
+        \vspace{4cm}
+    \end{solution}
+    \item Show that the worst case number of comparisons needed to merge two sorted lists, each of size $n$, is at least $2n-o(n)$.
+        \newline
+    (Hint: How many ways can we write down $2n$ distinct numbers as two sorted lists of $n$ numbers each? It may also be useful to look up the \href{https://en.wikipedia.org/wiki/Central_binomial_coefficient#Asymptotic_growth}{\underline{\textbf{central binomial coefficient (click here)}}} for its asymptotic growth.)
+    \begin{solution}
+        \vspace{6cm}
+    \end{solution}
+\end{enumerate}

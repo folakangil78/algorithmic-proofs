@@ -1,0 +1,92 @@
+\lhead{\textbf{Basic Algorithms, Fall 2025 \\ CSCI-UA.0310-005/6}}
+\chead{\Large{\textbf{Homework 11}}}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% ENTER NAME BELOW!
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\rhead{\textbf{Professor Rachit Garg}\\\textbf{Name:} ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~}
+%REPLACE THE TILDES WITH YOUR NAME
+\runningheadrule
+\firstpageheadrule
+\cfoot{}
+
+\section*{Due December 2 (9:00 a.m.)}
+\intro
+\subsection*{0 List all your collaborators and sources: (\texorpdfstring{$-\infty$}{-∞} points if left blank)}
+\vspace{0.75cm}
+
+\section*{Problem 11-1 -- Minimum Spanning Trees (35 Points)}
+
+\begin{enumerate}
+    \item (20 points) Give an example of a weighted, undirected graph $G=(V,E)$ on \textbf{four vertices} with a weight function $w : E \rightarrow \mathbb{R}^{\geq 0}$,
+    and a tree $T \subseteq E$,
+    such that
+    \begin{enumerate}
+        \item $T$ is an MST of $G$, but
+        \item For any vertex $v\in V$, $T$ is \emph{not} a single-source shortest-path tree with respect to source $v$.
+    \end{enumerate}
+    
+    Give a precise drawing or description of the graph. Then, explain what the minimum spanning tree and shortest path trees are, and how this satisfies the above. In particular, you should draw the MST and SSSP trees!
+
+    \begin{solution}
+        Drawing and/or description of weighted graph $G$:\vspace{5cm}
+    \end{solution}
+    \newpage
+    \begin{solution}
+        Drawing and/or description of MST $T$:\vspace{5cm}
+
+        Drawings and/or descriptions of SSSP trees (one for each vertex in $G$):\vspace{8cm}
+    \end{solution}
+
+    \item (15 points) 
+    Assume that all edge weights are 1
+    (i.e., for every edge $e \in E$
+    we have $w(e) = 1$).
+    Design the fastest algorithm you can to compute a minimum spanning tree (MST) of $G$. Explain why your algorithm computes an MST.
+
+    \begin{solution}
+        \vspace{5cm}
+    \end{solution}
+\end{enumerate}
+
+\section*{Problem 11-2 -- MST in Very Sparse Graphs (40 Points)}
+
+In this question we consider an undirected, connected weighted graph $G = (V,E)$ with the same number of edges as vertices, i.e., $|E| = |V|$.
+Assume that no two edges have the same weight.
+
+\begin{enumerate}
+    \item (10 points) Explain why $G$ has exactly one cycle.
+\begin{solution}
+        \vspace{6cm}
+    \end{solution}
+
+    
+    \item (10 points) Which edge of the cycle is guaranteed not to be part of any MST?
+    Explain your answer.
+    \begin{solution}
+        \vspace{6cm}
+    \end{solution}
+
+    \newpage
+    \item (20 points) 
+    Design the fastest algorithm you can to find an MST of $G$, in light of the previous two parts.
+    Analyze the runtime of your algorithm in terms of the number of vertices $|V|$ (which is equal to the number of edges $|E|$).
+
+ 
+    \begin{solution}
+        \vspace{8cm}
+    \end{solution}
+\end{enumerate}
+
+\section*{Problem 11-3 -- Light is Safe (25 Points)}
+Let $T$ be a spanning tree of an undirected graph $G=(V,E)$, let $e \notin T$ be any edge not in the spanning tree.
+\begin{enumerate}
+    \item (10 points) Explain why the graph $G' = T \cup\{e\}$ contains a cycle, but no more than one cycle. \newline(\textbf{Hint:} This generalizes Problem 2, part 1!)
+      \begin{solution}
+        \vspace{7cm}
+    \end{solution}
+    \newpage
+    \item (15 points) Show that if $e' \in T$ is any edge on that cycle, then $(T \cup \{e\}) \setminus \{e'\}$ is also a spanning tree.
+      \begin{solution}
+        \vspace{8cm}
+    \end{solution}
+\end{enumerate}

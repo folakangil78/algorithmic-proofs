@@ -1,0 +1,197 @@
+\lhead{\textbf{Basic Algorithms, Fall 2025 \\ CSCI-UA.0310-005/6}}
+\chead{\Large{\textbf{Homework 6}}}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% ENTER NAME BELOW!
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\rhead{\textbf{Professor Rachit Garg}\\\textbf{Name:} ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~}
+%REPLACE THE TILDES WITH YOUR NAME
+\runningheadrule
+\firstpageheadrule
+\cfoot{}
+
+\section*{Due October 20 (11:59 p.m.)}
+\intro
+
+\subsection*{1-0 List all your collaborators and sources: (\texorpdfstring{$-\infty$}{-∞} points if left blank)}
+\vspace{0.75cm}
+
+\section*{Problem 6-1 -- Heaviest Common Subsequence (35 Points)}
+
+In this question, we consider a variant of the LCS problem called the Heaviest Common Subsequence (HCS). Here every letter $\sigma$ of the alphabet is associated with a weight $w(\sigma)\in \mathbb{Z}^+$. Our goal is to find a \emph{heaviest} (rather than the longest) common sub-sequence of two given strings $X[1,\dots,n],Y[1,\dots,m]$,
+that is, a common sub-sequence $\sigma_1\dots \sigma_k$ of $X,Y$ that maximizes the weight $\sum_{i=1}^k w(\sigma_i)$. %(We will assume that given any letter $\sigma$, $w(\sigma)$ can be computed in constant time.) \nir{we're not addressing running time, so doesn't matter for now}
+
+\begin{enumerate}
+    \item (10 points) Let $H[i,j]$ denote the weight of the HCS of $X[1,\dots,i], Y[1,\dots,j]$. Complete the blank below to obtain a recurrence for $H[i,j]$.
+        \begin{solution}
+        
+    \end{solution}
+\item
+(13 points) Consider the following strings $X,Y$ and weights $w$:
+$$X = [A, L, G, O, S] \hspace{1cm} Y = [F, L, A, G]\hspace{1cm}\begin{tabular}{|c|c|c|c|c|c|c|}
+         \hline
+         Letter & A & F & G & L & O & S \\
+         \hline
+         $w$ & 1 & 2 & 3 & 3 & 2 & 3\\
+         \hline
+    \end{tabular} \enspace.
+$$  
+Similar to the LCS algorithm that we saw in class,
+use the HCS recurrence you wrote in part 1 to fill out  the following table $H$ for input $X, Y, w$,
+computing the value of $H[i,j]$ for each $i = 0,\ldots,5$ and $j = 0,\ldots,4$.
+Leave some empty space in each cell to add arrows in the next part.
+    \begin{solution}
+        \begin{center}
+        \begin{tabular}{|c|c|c|c|c|c|}
+             \hline
+            \backslashbox{$i$}{$j$} & ~~~~0~~~~ & ~~~~1~~~~ & ~~~~2~~~~ & ~~~~3~~~~ & ~~~~4~~~~ \\
+             \hline
+             ~~~~0~~~~& & & & &\\[7pt]
+             \hline
+             ~~~~1~~~~& & & & &\\[7pt]
+             \hline
+             ~~~~2~~~~& & & & &\\[7pt]
+             \hline
+             ~~~~3~~~~& & & & &\\[7pt]
+             \hline
+             ~~~~4~~~~& & & & &\\[7pt]
+             \hline
+             ~~~~5~~~~& & & & &\\[7pt]
+             \hline
+        \end{tabular}
+        \end{center}
+    \end{solution}
+    \item
+    (12 points) Add to your table from item 2 arrows ($\uparrow$, $\leftarrow$, $\nwarrow$) indicating how each cell was updated by your algorithm (just like we did in class for LCS). Use the arrows to find an HCS for this example.
+    \begin{solution}
+        (Write your HCS here, fill in the arrows above): 
+        \vspace{1cm}
+    \end{solution}
+\end{enumerate}
+
+\newpage
+
+
+\section*{Problem 6-2 -- Greedy Hermit Crabs (35 Points)}
+On the beach there are $n$ hermit crabs of sizes $A[1,\ldots,n]$,
+and $m$ shells of sizes $B[1,\ldots,m]$.
+We want to match as many crabs as possible with shells that can fit them: crab $i$ can fit into shell $j$ if $A[i] \leq B[j]$.
+The output should be an array $S[1,\ldots,n]$,
+where $S[i]$ is the index of the shell into which crab $i$ is placed, or $\ast$ if we did not match crab $i$ with a shell.
+
+\begin{enumerate}
+    \item 
+    (15 points)
+    Show that there is an optimal solution  where the smallest crab is assigned the smallest shell that can fit them (assuming there is such a shell).
+
+    (Hint: suppose you are given an assignment of crabs to shells that does not have this property. Can you modify it to obtain an assignment that does, and is at least as good?)
+
+    \begin{solution}
+        \vspace{5cm}
+    \end{solution}
+    
+    \item
+    (15 points)
+    Now suppose that the arrays $A,B$ are sorted in non-decreasing order.
+    Describe a greedy algorithm that computes an optimal assignment of crabs to shells.
+    \begin{solution}
+    \vspace{5cm}
+    \end{solution}
+    \newpage
+    \item
+    (5 points)
+    What is the asymptotic runtime of your algorithm, assuming again that $A,B$ are already sorted?
+    \begin{solution}
+    \vspace{4cm}
+    \end{solution}
+\end{enumerate}
+
+\noindent\textbf{Honors problem:} (***)
+Recall the Huffman Encoding problem shown in class - Prove Kraft's inequality, which asserts that for any collection of lengths $\ell_1,\ldots,\ell_n$,
+there is a (binary) prefix code where the encodings have lengths $\ell_1,\ldots,\ell_n$
+if and only if $\sum_{i = 1}^n 2^{-\ell_i} \leq 1$.
+\begin{solution}
+    \vspace{4cm}
+\end{solution}
+
+\section*{Problem 6-3 -- Fence Painting with Tom Sawyer (30 points)}
+Tom wants to paint a fence made out of $N$ boards of  different lengths given in an array
+$L[1,2, \ldots,N]$,
+where $L[i]$ is the length of the $i$-th board.
+He has convinced $K \leq N$ equally talented neighborhood kids to paint contiguous sections of the fence, \emph{in parallel}:
+each kid $p \in \{1,\ldots,K\}$ works on a contiguous section $s_p,s_p+1\ldots,f_p$.
+Each kid's section starts immediately after the preceding kid's.
+We could have $f_p = s_p - 1$,
+in which case kid $p$ does not paint any boards.
+For example, if the fence consists of $N = 7$ boards and we have $K = 3$ kids, one option is to
+assign boards $\{1,2,3,4\}$ to kid 1,
+board $\{5\}$ to kid 2,
+and boards $\{6,7\}$ to kid 3.
+Another option is to assign no boards to kid 1,
+boards $\{1,2,3\}$ to kid 2,
+and boards $\{4,5,6,7\}$ to kid 3.
+
+The time $T_p$ required for kid $p \in \{1,\ldots,K\}$ to complete their work is equal to the \emph{total length} of the boards assigned to kid $p$.
+Since the kids work in parallel, 
+the work is finished as soon as \emph{all} the kids are finished.
+Our goal
+is to have the fence painted as soon as possible, that is, to minimize $\max_{p \in \{1,\ldots,K\}} T_p$.
+%
+(In the first example above, the first kid will take $T_1 = L[1]+L[2]+L[3]+L[4]$ time, the second will take $T_2 = L[5]$ time, and the last will take $T_3 = L[6]+L[7]$ time. The time required to paint the entire fence will be $\max ( T_1, T_2, T_3)$.)
+
+In this problem we develop a dynamic programming algorithm to find the optimal way to paint the fence.
+We will use the following subproblems:
+for $i \in \{0,\ldots,N\}$ and $j \in \{1,\ldots,K\}$,
+let $m[i,j]$ denote the optimal time to paint boards $1,\dots,i$ using $j$ kids.
+
+\begin{enumerate}
+\item (10 points) Write a recurrence for $m[i,j]$.
+  Include the base cases for the recurrence.
+
+(\textbf{Hint: }
+when $j > 1$,
+what are the possibilities for the work we assign to the last kid, $j$?
+And for each such possibility, how long will the fence take to paint if we use the other kids optimally?
+)
+  
+  \begin{solution}
+      \vspace{3cm}
+  \end{solution}
+
+\item
+(10 points) Describe an algorithm that
+is given the board lengths $L[1,\ldots,N]$
+and the number of kids $K$, and finds 
+the optimal time to paint the entire fence.
+The running time of your algorithm should be
+$O(N^3 K)$.
+\begin{solution}
+    \vspace{6cm}
+\end{solution}
+
+
+\item
+(10 points) Explain how to improve your algorithm from the previous part, so that its running time is only $O(N^2 K)$.
+
+\begin{solution}
+      \vspace{4cm}
+
+  \end{solution}
+\end{enumerate}
+
+
+\section*{Honors Problem - Binge Watching Greedily (0 Points, **)}
+Garfield wants to watch TV \textbf{non-stop} for the entire time period $[S, F)$. He has a list of $n$ TV shows (each on a different channel), where the $i$-th show runs for the time period $[s_i, f_i)$, and the union of all $[s_i, f_i)$ fully covers the entire time period $[S, F)$
+
+
+Garfield doesn’t mind switching in the middle of a show he is watching, but is very lazy to switch TV channels, so he wants to find the smallest set of TV shows that he can watch, and still stay occupied for the entire period $[S, F)$. Your goal is to design an efficient $O(n \log n)$-time greedy algorithm to help Garfield. 
+
+\begin{enumerate}
+    \item Describe your greedy algorithm in plain English. 
+    \begin{solution}
+        \vspace{2cm}
+    \end{solution}
+    \item Describe how to implement your algorithm in $O(n \log n)$ time. Prove the correctness of your algorithm and the bound on its run time. (Hint: show that the output of your algorithm is never worse than \emph{any} optimal solution.\footnote{For a given list of $n$ TV shows, there could be multiple optimal solutions. Your greedy algorithm only needs to return one of them.})
+    \begin{solution}
+        \vspace{6cm}
+    \end{solution}
+\end{enumerate}

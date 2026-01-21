@@ -1,0 +1,165 @@
+\lhead{\textbf{Basic Algorithms, Fall 2025 \\ CSCI-UA.0310-005/6}}
+\chead{\Large{\textbf{Homework 2}}}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% ENTER NAME BELOW!
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\rhead{\textbf{Professor Rachit Garg}\\\textbf{Name:} ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~}
+%REPLACE THE TILDES WITH YOUR NAME
+\runningheadrule
+\firstpageheadrule
+\cfoot{}
+
+\section*{Due September 22 (11:59 p.m.)}
+\intro
+
+\subsection*{1-0 List all your collaborators and sources: (\texorpdfstring{$-\infty$}{-∞} points if left blank)}
+\vspace{0.75cm}
+
+\subsection*{Problem 2-1 -- Pigeonhole Principle (16 Points)}
+
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=0.2\textwidth]{Images/new_box.png}
+    \caption{Sparse set of points in a unit square}
+    \label{fig:box}
+\end{figure}
+
+\begin{enumerate}
+    \item (2 point) State the Pigeon Hole Principle in your own words and give some intuition as to why it should be true.
+
+    \begin{solution}
+        \vspace{3cm}
+    \end{solution}
+    
+    \item (7 point) Here is a more formal statement of the Pigeon Hole Principle: Let $A$ and $B$ be finite sets such that $|A|>|B|$. Then there does not exist any one to one function $f:A \rightarrow B$. Prove this using induction.
+
+    \begin{solution}
+        \vspace{7cm}
+    \end{solution}
+    
+    \item (7 points) Consider a unit square (side length is $1$ unit). A set of points $S$ is called \textit{sparse} if any two points in $S$ are at least $\frac{1}{4}$ distance away from each other. Prove that there exists a constant $C$ such that no sparse set of points within the square can contain more than $C$ many points. (One approach to proving this is to try to apply the Pigeon Hole Principle)
+    \begin{solution}
+        \vspace{8cm}
+    \end{solution}
+\end{enumerate}
+\newpage
+
+\section*{Problem 2-2 -- Recurrence Practice (24 points)}
+(6 points each) Solve the following recurrences by finding a function $f(n)$ such that $T(n) = O(f(n))$ using the method specified. Show your work. You only need to show an upper bound for each (i.e., big-$O$), but you will only get partial credit if you do not find the best possible asymptotic. 
+
+\begin{enumerate}
+    \item Use the recurrence tree method to solve $T(n) = 4T(n/2) + n$ with $T(1)=T(0)=3$.
+        \begin{solution}
+        \vspace{\stretch{1}}
+            \vspace{4 cm}
+        \end{solution}
+    \item Use the substitution method to verify your function found in part 1. 
+        \begin{solution}
+        \vspace{\stretch{1}}
+            \vspace{5 cm}
+        \end{solution}
+    \item solve $T(n) = T(n/3) + \log_3 n$  with $T(0) = T(1)=T(2) = 2$.
+        \begin{solution}
+        \vspace{\stretch{1}}
+            \vspace{5 cm}
+        \end{solution}
+    \item Use the substitution method to verify your function found in part 3. 
+        \begin{solution}
+        \vspace{\stretch{1}}
+            \vspace{5 cm}
+        \end{solution}
+\end{enumerate}
+
+\subsection*{Problem 2-3 -- Fast Exponentiation (20 Points+Honors Problem)}
+
+Naively, in order to compute $2025^n$ given input $n$, we need to perform $n-1$ many multiplications. 
+
+\begin{enumerate}
+    \item (8 points) For this problem, assume the input $n$ if a power of 2. That is, assume $n=2^k$ for some positive integer $k$. Give an algorithm that computes $2025^n$ using only $O(k)$ many multiplications.
+    \begin{solution}
+        \vspace{5cm}
+    \end{solution}
+    \item (12 points) Justify the correctness and runtime complexity of your algorithm.
+    \begin{solution}
+        \vspace{4cm}
+    \end{solution}
+    \newpage
+    \begin{solution}
+        \emph{cont.}
+        \vspace{5cm}
+    \end{solution}
+    \item (\textbf{Honors Problem}, 0 points, *) Extend your result to the general case. That is, given an input any natural number $n$, give an algorithm that computes $2025^n$ using only $O(\log_2n)$ multiplications.
+    \begin{solution}
+        \vspace{6cm}
+    \end{solution}
+\end{enumerate}
+\newpage
+
+\subsection*{Problem 2-4 -- Sorting Stability (20 Points)}
+
+
+Recall that a sorting algorithm is said to be \emph{stable} if it does not change the order of identical elements in the input array.
+
+(More formally, if $A$ is the input and $A'$ is the sorted output, then for any two elements $A[i] = A[j]$ in the input,
+if $i', j'$ are the new locations of elements $A[i]$ and $A[j]$ in the sorted output array,
+then $i < j$ if and only if $i' < j'$.)
+
+
+\begin{enumerate}[label=(\alph*)]
+\item (10 points) Show that Merge Sort is stable. (A convincing explanation is enough, there is no need for a formal proof.)
+
+\begin{solution} 
+        \vspace{\stretch{1}}
+        \vspace{7 cm}
+\end{solution}
+
+\item (10 points) Show that Quicksort (using the last element as the pivot) is \emph{not} stable, by giving an example of an input array $A$ containing two identical elements,
+such that running Quicksort on $A$ changes the order of these elements.
+%By giving an example input array $A$ and indices $i<j$ for which $A[i]=A[j]$ but $i'>j'$ in $A'$, show that quick sort is not stable.
+
+\begin{solution} 
+        \vspace{\stretch{1}}
+        \vspace{7 cm}
+\end{solution}
+
+\end{enumerate}
+
+\section*{Problem 2-5 -- Weighted Median (20 Points)}
+
+Suppose we have $n$ distinct positive numbers $x_1, x_2, \ldots, x_n$ such that $\sum_i x_i = 1$. The goal of this question is to find the weighted median. We define the weighted median as the element $x_k$ such that:
+$$
+\sum_{x_i<x_k} x_i < \frac{1}{2} \qquad\text{and}\qquad \sum_{x_i>x_k} x_i \leq \frac{1}{2}. 
+$$
+That is, the weighted median lies somewhere in the array such that everything smaller sums to less than 1/2 and everything larger sum to at most 1/2. With divide and conquer, we can solve this problem in time $\Theta(n)$.
+\begin{enumerate}
+    \item (15 points) Use divide-and-conquer to create an algorithm that finds the weighted median of an input list $x_1, x_2, \ldots, x_n$ satisfying $\sum_{x_i} x_i=1$. 
+    (\textbf{Hint:} calculate the actual median first, which can be done in time $\Theta(n)$! Then, consider the total sum of elements less than the median and the total sum greater than the median. Try to use these to make some clever partitions for your divide step based on the actual median.)
+    \begin{solution}
+        \vspace{7cm}
+    \end{solution}
+    \item (5 points) Justify the runtime of your algorithm. You only need to argue the upper bound (that is, the algorithm runs in $O(n)$). 
+    \begin{solution}
+        \vspace{4.5cm}
+    \end{solution}
+\end{enumerate}
+
+\section*{Honors Problem -- Quicksort with Duplicates (0 Points)}
+
+\begin{enumerate}
+    \item (\textbf{*}): In class, we considered for simplicity Quicksort as running on arrays in which every element is unique. However, in reality, this will not always be the case. Consider the case where any element appears in the array at most $n/2$ times. Show that even if we partition around the median, the Quicksort recursion tree might be of depth $\Omega(n)$. 
+
+    % Consider the scenario where some element appears $n/2$ times in the array. Show that, even in this case, choosing the median element of the array as the partition may result in the pivot being very far from the middle of the array. \emph{(\textbf{Hint:} Try some small toy examples.)}
+    \begin{solution}
+        \vspace{\stretch{1}}
+        \vspace{6 cm}
+    \end{solution}
+
+    \item (\textbf{**}): Modify the partition subroutine in Quicksort to eliminate this problem, so that even if the array $A$ has duplicate elements, if we choose the median of $A$ as the pivot at each step, the depth of the Quicksort recursion tree will be $O(\log n)$.
+
+    \begin{solution}
+        \vspace{\stretch{1}}
+        \vspace{8 cm}
+    \end{solution}
+
+    
+\end{enumerate}

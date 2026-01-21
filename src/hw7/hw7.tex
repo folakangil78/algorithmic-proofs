@@ -1,0 +1,147 @@
+\lhead{\textbf{Basic Algorithms, Fall 2025 \\ CSCI-UA.0310-005/6}}
+\chead{\Large{\textbf{Homework 7}}}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% ENTER NAME BELOW!
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\rhead{\textbf{Professor Rachit Garg}\\\textbf{Name:} ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~}
+%REPLACE THE TILDES WITH YOUR NAME
+\runningheadrule
+\firstpageheadrule
+\cfoot{}
+
+\section*{Due November 3 (11:59 p.m.)}
+\intro
+
+\subsection*{1-0 List all your collaborators and sources: (\texorpdfstring{$-\infty$}{-∞} points if left blank)}
+\vspace{0.75cm}
+
+\section*{Problem 7-1 --  Huffman Coding (10 Points)}
+
+Suppose our alphabet has symbols $1,\ldots,n$,
+and we construct a Huffman code as shown in class.
+Give an example of frequencies $f_1,\ldots,f_n$ for these symbols,
+for which we will get the following tree:
+
+\begin{enumerate}
+\item (2 points) A perfectly-balanced tree, where all $n$ leafs have the same depth.
+(Assume that $n$ is a power of 2.)
+\begin{solution}
+    \vspace{5cm}
+\end{solution}
+
+\newpage
+
+\item (4 points) A tree where $n - 1$ leafs have the same depth, and one leaf has a different depth from the others. (Assume that $n$ is of the form $2^i + 1$ for some $i \geq 1$.)
+\begin{solution}
+    \vspace{4cm}
+\end{solution}
+
+\item (4 points) A tree with exactly one leaf 
+at each depth $1,\ldots,n-2$
+and two leafs at depth $n-1$.
+\begin{solution}
+    \vspace{4cm}
+\end{solution}
+
+
+\end{enumerate}
+
+\noindent\textbf{Honors problem:} (***)
+Prove Kraft's inequality, which asserts that for any collection of lengths $\ell_1,\ldots,\ell_n$,
+there is a (binary) prefix code where the encodings have lengths $\ell_1,\ldots,\ell_n$
+if and only if $\sum_{i = 1}^n 2^{-\ell_i} \leq 1$.
+\begin{solution}
+    \vspace{7cm}
+\end{solution}
+\newpage
+
+\section*{Problem 7-2 -- Optimal Prefix Trees (30 Points)}
+
+Let $S$ be an alphabet with frequencies $\left\{ f_x \right\}_{x \in S}$, and
+let $T$ be a prefix code represented as a tree,
+and let $\mathsf{depth}_T(x)$ denote the depth of symbol $x$ in the tree $T$.
+Recall that the ABL of tree $T$ is defined as follows:
+\begin{equation*}
+    \mathrm{ABL}(T) = \sum_{x \in S} f_x \cdot \mathsf{depth}_T(x).
+\end{equation*}
+
+Suppose that $T$ is an \emph{optimal code}, i.e., it has minimal ABL among all prefix codes representing $S$ with the given frequencies.
+Formally prove the following claims, which were presented in class.
+
+(Hint: prove these claims \emph{by contradiction.})
+
+\begin{enumerate}
+    \item
+        (10 points) 
+        For any two symbols $x,y \in S$,
+        if $f_x < f_y$, then $\mathsf{depth}_T(x) \geq \mathsf{depth}_T(y)$.
+        \begin{solution}
+        \vspace{6cm}
+    \end{solution}
+
+    \item
+    (10 points) 
+        $T$ does not contain any inner vertex that has only one child.
+    \begin{solution}
+    \vspace{6cm}
+    \end{solution}
+\newpage
+    \item
+    (10 points) 
+    $T$ has two leafs that are siblings (i.e., have the same parent).
+    \begin{solution}
+    \vspace{6cm}
+    \end{solution}
+\end{enumerate}
+
+\section*{Problem 7-3 -- Huffman's Greedy Choice Property (30 points)}
+Prove the Greedy Choice Property of Huffman Coding:
+
+Let $S$ be an alphabet with frequencies $\left\{ f_x \right\}_{x \in S}$,
+and let $y,z \in S$ be two symbols with the smallest frequencies in $S$.
+Then there exists an \emph{optimal code} $T$ (represented as a tree) 
+where $y,z$ are sibling leafs.
+
+(Hint: review the structure of the proof of the greedy choice property for Interval Scheduling.)
+%suppose you are given an optimal code $T$' where $y,z$ are \emph{not} sibling leafs. How can you change it into a tree $T$ where $y,z$ \emph{are} sibling leafs, while not increasing the ABL ? You may rely on Question 1.)
+
+\begin{solution}
+    \vspace{9cm}
+\end{solution}
+
+\section*{Problem 7-4 -- Baseball! (30 Points)}
+
+You are the manager of a baseball team and want to decide which of your $m$ pitchers are going to pitch which innings (one pitcher per inning). Your pitchers follow the following rules:
+\begin{itemize}
+    \item Each pitcher may pitch multiple innings if they are able.
+    \item Each pitcher $j$ has starting effectiveness $e_j$, where $e_j\in\mathbb{R}^+$ (i.e., all starting effectiveness are positive).
+    \item The first inning a pitcher pitches, they have effectiveness $e_j$. Every time thereafter, though, their effectiveness is reduced by $t_j$ (where this constant may vary for different pitchers). This means that the effectiveness for pitcher $j$ in its $i$-th inning pitched is given by:
+    $$e_{j,i} = e_j - (i-1) \cdot t_j$$
+    \item A pitcher may not pitch if their effectiveness for that inning would be nonpositive (i.e., 0 or negative). 
+\end{itemize}
+
+As an example, if a pitcher has $e_j=100$ and $t_j = 10$, their effectiveness for their 1st inning is 100, their 2nd is 90, their 3rd is 80, and so on. They would be able to pitch up to 10 innings, but not 11 (as in the eleventh inning their effectiveness would be 0). Assume there exists a feasible solution (i.e., we can pick pitchers for all $m$ innings such that all innings will have a pitcher with positive effectiveness). Your goal is to maximize the total effectiveness summed across all innings. 
+
+\begin{enumerate}
+    \item (10 points) Assume that you can put pitchers into the game as many times as you like. The pitchers do not have enough time to rest (i.e., their effectiveness rating does not go back up and depends only on the total number of innings they have played). Write an efficient algorithm to determine who should pitch at each inning.
+    \begin{solution}
+        \vspace{7cm}
+    \end{solution}
+    \newpage
+
+    \item (4 points) In your answer above, do you need to know how many innings will be played? (Recall we assume that you are guaranteed to have effective pitchers for the whole game) Why or why not?
+    \begin{solution}
+        \vspace{6cm}
+    \end{solution}
+
+    \item (6 points) We now assume that the pitchers cannot return to the game once they have left. They can still pitch for as many consecutive innings as you specify, but once you take them out, they are done. Suppose there is a fixed number of innings $n$ that you know ahead of time. Specify an efficient algorithm that determines the best possible pitching lineup. (Note: You just need to determine the set of (pitcher, consecutive innings pitched) pairs that sum to $n$ total innings. The total effectiveness is the sum of these individual contributions, regardless of the order they appear in the game).
+    \begin{solution}
+        \vspace{8cm}
+    \end{solution}
+    \newpage
+
+    \item (10 points) Now assume the number of innings is not known ahead of time (as is often the case in real baseball games), but you still cannot put pitchers back in. Will an inning-by-inning greedy algorithm (e.g., "always make the move that provides the highest effectiveness for the \emph{current} inning") be guaranteed to produce the maximum possible total effectiveness, no matter when the game ends?  If yes, prove it, if not, provide a counter example.
+    \begin{solution}
+        \vspace{7cm}
+    \end{solution}
+\end{enumerate}

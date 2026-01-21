@@ -1,0 +1,145 @@
+\lhead{\textbf{Basic Algorithms, Fall 2025 \\ CSCI-UA.0310-005/6}}
+\chead{\Large{\textbf{Homework 3}}}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% ENTER NAME BELOW!
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\rhead{\textbf{Professor Rachit Garg}\\\textbf{Name:} ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~}
+%REPLACE THE TILDES WITH YOUR NAME
+\runningheadrule
+\firstpageheadrule
+\cfoot{}
+
+\section*{Due September 29 (11:59 p.m.)}
+\intro
+
+\subsection*{1-0 List all your collaborators and sources: (\texorpdfstring{$-\infty$}{-∞} points if left blank)}
+\vspace{0.75cm}
+
+\subsection*{Problem 3-1 -- Super Inversions (10 Points)}
+
+Recall that an inversion of an $n$-long array $A$ is a pair of indices $(i, j)$ such that $1\leq i<j\leq n$ but $A[i]>A[j]$. In the first homework, you were tasked with creating an algorithm that could find the number of inversions in a given array in $\Theta(n\log n)$ time.
+
+Consider now the task of finding \emph{super inversions}. We define a super inversion as a pair of indices $(i, j)$ such that $1\leq i<j\leq n$ but $A[i] > 2A[j]$. Give a $\Theta(n\log n)$ algorithm that finds the number of super inversions in a given array $A$. Briefly justify its runtime. 
+
+\begin{solution}
+    \vspace{7cm}
+\end{solution}
+
+\subsection*{Problem 3-2 -- Median of Medians (35 Points)}
+
+In the linear time ``median-of-medians'' selection algorithm, we grouped elements into groups of $5$ and used the $n/5$ medians of these groups.
+We showed that the median of the $n/5$ medians has at least $(3/10)n$ elements that are no greater than it, and at least $(3/10)n$ elements that are no smaller than it.
+
+We now ask what would happen if we used groups of 3 or 7 elements instead of 5.
+
+\begin{enumerate}
+   \item (10 points)
+    For a group size of 3,
+    compute the constant $\alpha \in [0,1]$
+    that replaces the constant of $3/10$ that we had for groups of 5.
+    In other words, for what value of $\alpha$
+    is the median of the medians
+    guaranteed to have at least $\alpha n$
+    elements 
+    that are no greater than it, and at least $\alpha n$ elements that are no smaller than it?
+    Explain your answer.
+\begin{solution}
+    \vspace{\stretch{1}}
+        \vspace{3 cm}
+\end{solution}
+
+\item (5 points) Again find the constant $\alpha$, now for group size of 7. Explain your answer.
+\begin{solution}
+    \vspace{\stretch{1}}
+        \vspace{3 cm}
+\end{solution}
+
+\item (10 points)
+    Compute the running time of the median-of-medians selection algorithm if we replace the group size by 3.
+    Write the recurrence for the running time and use the Recursion Tree method to solve it.
+    \begin{solution}
+    \vspace{\stretch{1}}
+        \vspace{4 cm}
+\end{solution}
+
+    \item (10 points)
+    Now compute the running time of the median-of-medians selection algorithm if we replace the group size by 7.
+    Write the recurrence for the running time and use the Recursion Tree method to solve it.
+    \begin{solution}
+    \vspace{\stretch{1}}
+        \vspace{5 cm}
+\end{solution}
+
+\end{enumerate}
+
+\subsection*{Problem 3-3 -- Mushroom Majority (25 Points)}
+
+You are an assistant at a fancy restaurant.  A farmer has come to you with a large basket of $n$ truffles (a fancy type of mushroom).  The truffles are of an unknown number of different varieties.  The head chef wants to make a sauce with at least $n/2+1$ truffles of \emph{the same variety} and will only buy the basket if he can make a suitable sauce.  You cannot tell the difference between the varieties, but thankfully the farmer has brought along his truffle-sniffing pig. You can give the pig any two mushrooms, and it will oink if and only if two truffles held to its snout are of the same variety.  
+
+\begin{enumerate}
+\item (10 points) Show how to decide whether to buy the basket with $O(n\log n)$ queries to the pig.
+
+% (20 points) Recall the closest pair algorithm. In class you have seen the algorithm to find the closest pair of points in a plane. Consider the 3-dimensional version of this problem: given $n$ points in $\mathbb{Z}^3$ we want to find the closest pair of points. Try to use the ideas seen in class to develop an algorithm to solve this problem as efficiently as possible. You will get full points for an algorithm that runs in time $O(n\log^2 n)$, but note that even faster algorithms exist (as quick as $O(n\log n)$).
+
+\begin{solution}
+    \vspace{7cm}
+\end{solution}
+
+\newpage
+
+\item (10 points) Justify your runtime. 
+
+\begin{solution}
+    \vspace{7cm}
+\end{solution}
+
+
+\item (5 points) Modify your solution to also collect the $n/2+1$ mushrooms of the same variety (if this grouping exists). 
+
+\begin{solution}
+    \vspace{5cm}
+\end{solution}
+\newpage
+
+\item (honors problem, 0 points, **) Provide an algorithm that decides on the basket in only $O(n)$ pig queries. (hint: If you discard pairs of truffles from different varieties, what will happen if there is indeed a majority variety?) 
+
+\begin{solution}
+    \vspace{5cm}
+\end{solution}
+
+\end{enumerate}
+
+\subsection*{Problem 3-4 -- Repeat Elements (30 Points)}
+
+Consider an array $A$ with $n$ elements where it is guaranteed that every element appears exactly twice in $A$, e.g., $A=(9,7,7,1,9,1,3,5,3,5)$. For any two elements $A[i], A[j]$ in the array, we may only compare the elements by testing equality, i.e., $A[i] \overset{?}{=} A[j]$. With this in mind, 
+\begin{enumerate}
+    \item (15 points) Give an algorithm that returns two positions in $A$ that have the same element using at most $n-2$ comparisons/equality tests.
+    
+    \medskip\noindent\emph{Note:} These may be any two positions, so for example $(1,5), (2,3), (4,6),(7,9)$ or $(8, 10)$ are all valid outputs of this algorithm on $A$.
+
+    \begin{solution}
+        \vspace{7cm}
+    \end{solution}
+
+    \item  (15 points) Prove that your algorithm really needs $n-2$ comparisons in the worst case (i.e., there are inputs where it uses that many comparisons before terminating). Specifically, give an example of a worst-case input for $n=10$.
+
+    \begin{solution}
+        \vspace{7cm}
+    \end{solution}
+\end{enumerate}
+
+
+\subsection*{Honors Problem -- Lower Bounds (0 Points)}
+In Question 3-4, we asked you to give an algorithm to find two positions with the same element.
+\begin{itemize}
+    \item (****) We conjecture that any correct comparison-based deterministic algorithm must use \emph{at least} $n-2$ comparisons. Is the conjecture true? Can you prove it?
+
+    \begin{solution}
+        \vspace{7cm}
+    \end{solution}
+    \newpage
+    \item  (**) However, it is possible to construct a \emph{randomized} algorithm which in expectation uses fewer comparisons. Suggest a randomized algorithm and state (try to justify) how many comparisons it requires in expectation. (Hint: suppose you just pick a few positions of the array at random. How many do you need to pick before there is a good chance that some element occurs at two of those positions?)
+    \begin{solution}
+        \vspace{6cm}
+    \end{solution}
+\end{itemize} 
