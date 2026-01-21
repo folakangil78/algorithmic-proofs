@@ -1,0 +1,28 @@
+#include <limits.h>
+
+#include <math.h>
+#include <stdio.h>
+
+double calculate_t(unsigned int n, unsigned int b, double k) {
+    double d = log(k) / log(b);
+    
+    return (n + b) * d;
+}
+int main() {
+    unsigned int n = 1 << 16;
+    double k = pow(2, 128);
+    unsigned int argMinB = 0;
+    double minT = INFINITY;
+    
+    for (unsigned int b = 2; b <= n; b++) {
+        double t = calculate_t(n, b, k);
+        if (t < minT) {
+            minT = t;
+            argMinB = b;
+        }
+    }
+    
+    printf("n = %u, b = %u, k = %e, T = %.2lf\n", n, argMinB, k, minT);
+    
+    return 0;
+} 
